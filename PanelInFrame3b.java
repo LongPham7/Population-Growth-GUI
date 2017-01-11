@@ -1,7 +1,7 @@
 /**
  * Title:                         Graph2 of the Logistic Growth
  *                                                                 @author Pham.LongThanh
- *                                                                 Date: October 15, 2013
+ *                                                                 Date: January 11, 2017
  *   
  *Class Description:
  *    This class draws a graph of populations of 2 consecutive generations in the logistic 
