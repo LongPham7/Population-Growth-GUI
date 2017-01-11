@@ -1,7 +1,7 @@
 /**
  * Title:                         Graph1 of the Logistic Growth
  *                                                                 @author Pham.LongThanh
- *                                                                 Date: October 15, 2013
+ *                                                                 Date: January 11, 2017
  *    
  *Class Description:
  *    This class draws a graph of the logistic growth based on constants inserted by a user.
