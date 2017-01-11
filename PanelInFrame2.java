@@ -1,10 +1,10 @@
 /**
  * Title:                         Graph of the Exponential Growth
  *                                                                 @author Pham.LongThanh
- *                                                                 Date: October 15, 2013
+ *                                                                 Date: January 11, 2017
  *     
  *Class Description:
- *    This class draws a graph of the exponential growth based on constants inserted by a user.
+ *    This class draws a graph of the exponential growth based on constants given by a user.
  *This is implemented when repaint() is called. 
  *
  *Algorithm Outline:
