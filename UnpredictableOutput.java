@@ -1,7 +1,7 @@
 /**
  * Title:                           Unpredictable Output
  *                                                                @author Pham.LongThanh
- *                                                                Date: November 17, 2013
+ *                                                                Date: January 11, 2017
  *
  *Class Description:
  *    This class lets us insert  variables for the exponential and logistic growths, and
