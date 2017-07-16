@@ -7,11 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-public class LogisticGrowthA {
+public class LogisticGrowthA implements GrowthGraph {
 
 	private AppFrame app;
-	private PanelInFrame3 panelFrame3;
-	private JLabel labelInFrame3;
+	private PanelLogisticGrowthA panel;
 
 	// Boolean to know if animation mode of the first graph of the logistic growth
 	// is
@@ -32,19 +31,19 @@ public class LogisticGrowthA {
 	// clicks a button to draw a graph of the logistic growth. This JFrame has a
 	// label
 	// and a graph of generation v.s. population in the logistic growth.
-	public void activateLogisticGrowthA() {
+	public void activate() {
 		JFrame frame3 = new JFrame("Logistic Growth 1");
-		// Class PanelInFrame3 is a subclass of PanelInFrame2.
-		panelFrame3 = new PanelInFrame3();
-		labelInFrame3 = new JLabel("Here is a graph of the discrete logistic growth.");
-		frame3.getContentPane().add(BorderLayout.CENTER, panelFrame3);
+		// Class PanelLogisticGrowth is a subclass of PanelInFrame2.
+		panel = new PanelLogisticGrowthA();
+		JLabel labelInFrame3 = new JLabel("Here is a graph of the discrete logistic growth.");
+		frame3.getContentPane().add(BorderLayout.CENTER, panel);
 		frame3.getContentPane().add(BorderLayout.NORTH, labelInFrame3);
 
 		frame3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame3.setSize(1350, 700);
 		frame3.setVisible(false);
 
-		frame3Draw();
+		frameDraw();
 		frame3.setVisible(true);
 	}
 	
@@ -55,7 +54,7 @@ public class LogisticGrowthA {
 	// This method draws a graph of generation v.s. population of the logistic
 	// growth using
 	// the constants submitted by the user.
-	private void frame3Draw() {
+	private void frameDraw() {
 		// Initial population
 		int p = app.getField5();
 		// The number of generations including the initial one
@@ -75,8 +74,8 @@ public class LogisticGrowthA {
 		if (app.getField7() < 4) {
 
 			// Pass the array of data points of the logistic growth to the array "sample"
-			// in PanelInFrame3
-			panelFrame3.sample = data;
+			// in PanelLogisticGrowth
+			panel.sample = data;
 
 			/*
 			 * If the animation mode is off, set the variable "count" to be the length of
@@ -85,14 +84,14 @@ public class LogisticGrowthA {
 			 * case, all data points are plotted.
 			 */
 			if (check == false) {
-				panelFrame3.count = data.length;
-				// Call paintComponent() in Class PanelInFrame3, which is a subclass of
+				panel.count = data.length;
+				// Call paintComponent() in Class PanelLogisticGrowth, which is a subclass of
 				// PanelInFrame2.
-				panelFrame3.repaint();
+				panel.repaint();
 			}
 			// Otherwise, animate the graph.
 			else {
-				frame3Animate();
+				frameAnimation();
 			}
 		}
 		// If the reproductive rate in the logistic growth is larger than 4,
@@ -104,8 +103,8 @@ public class LogisticGrowthA {
 	}
 
 	// This method animates the first graph of the logistic growth.
-	private void frame3Animate() {
-		panelFrame3.count = 0;
+	private void frameAnimation() {
+		panel.count = 0;
 		// If the timer does not exist yet, start the timer.
 		if (timer == null) {
 			timer = new Timer(50, new animate3Listener());
@@ -124,9 +123,9 @@ public class LogisticGrowthA {
 			// If the variable "count" is smaller than the length of the array of date
 			// points,
 			// increment the variable by 1 and repaint the panel.
-			if (panelFrame3.count < data.length) {
-				panelFrame3.count++;
-				panelFrame3.repaint();
+			if (panel.count < data.length) {
+				panel.count++;
+				panel.repaint();
 			}
 			// If the variable "count" reaches the last element in the array, stop the
 			// timer.

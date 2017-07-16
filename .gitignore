@@ -27,3 +27,9 @@
 /ExponentialGrowth$animate2Listener.class
 /LogisticGrowthA$animate3Listener.class
 /LogisticGrowthB$animate3bListener.class
+/GrowthGraph.class
+/PanelExponentialGrowth.class
+/PanelLogisticGrowthA.class
+/PanellogisticGrowthB.class
+/PanelGrowthGraph.class
+/PanelLogisticGrowthB.class

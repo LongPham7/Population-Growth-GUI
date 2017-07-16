@@ -7,11 +7,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-public class ExponentialGrowth {
+public class ExponentialGrowth implements GrowthGraph {
 
 	private double[] data;// Array of data points of the exponential growth
 	private AppFrame app;
-	private PanelInFrame2 panelFrame2;
+	private PanelExponentialGrowth panel;
 	private boolean canDisplay = true;// Boolean to see if the graph of the exponential growth
 	// should be displayed or not.
 
@@ -30,20 +30,20 @@ public class ExponentialGrowth {
 	// user
 	// clicks a button to draw a graph of the exponential growth. This JFrame has a
 	// label //and a graph of generation v.s. population in the exponential growth.
-	public void activateExponentialGrowth() {
+	public void activate() {
 		JFrame frame2 = new JFrame("Exponential Growth");
 		// Class PanelInFrame2 is a subclass of JPanel. This class overrides the method
 		// paintComponent().
-		panelFrame2 = new PanelInFrame2();
+		panel = new PanelExponentialGrowth();
 		JLabel labelInFrame2 = new JLabel("Here is a graph of the exponential growth.");
-		frame2.getContentPane().add(BorderLayout.CENTER, panelFrame2);
+		frame2.getContentPane().add(BorderLayout.CENTER, panel);
 		frame2.getContentPane().add(BorderLayout.NORTH, labelInFrame2);
 
 		frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame2.setSize(700, 700);
 		frame2.setVisible(false);
 
-		frame2Draw();
+		frameDraw();
 		frame2.setVisible(true);
 	}
 	
@@ -53,7 +53,7 @@ public class ExponentialGrowth {
 
 	// This method draws a graph of generation v.s. population of the exponential
 	// growth using the constants submitted by a user.
-	private void frame2Draw() {
+	private void frameDraw() {
 		// Initial population
 		int p = app.getField1();
 		// The number of generations including the initial one
@@ -75,7 +75,7 @@ public class ExponentialGrowth {
 		}
 
 		if (canDisplay == true) {
-			panelFrame2.sample = data;
+			panel.sample = data;
 
 			/*
 			 * If the animation mode is off, set the variable "count" to be the length of
@@ -84,13 +84,13 @@ public class ExponentialGrowth {
 			 * case, all data points are plotted.
 			 */
 			if (check == false) {
-				panelFrame2.count = data.length;
+				panel.count = data.length;
 				// Call paintComponent() in Class PanelInFrame2, which is a subclass of JPanel.
-				panelFrame2.repaint();
+				panel.repaint();
 			}
 			// Otherwise, animate the graph.
 			else {
-				frame2Animate();
+				frameAnimation();
 			}
 		} else {
 			JOptionPane.showMessageDialog(null,
@@ -100,8 +100,8 @@ public class ExponentialGrowth {
 	}
 
 	// This method animates the graph of the exponential growth.
-	private void frame2Animate() {
-		panelFrame2.count = 0;
+	private void frameAnimation() {
+		panel.count = 0;
 		// If the timer does not exist yet, start the timer.
 		if (timer == null) {
 			timer = new Timer(50, new animate2Listener());
@@ -120,9 +120,9 @@ public class ExponentialGrowth {
 			// If the variable "count" is smaller than the length of the array of date
 			// points,
 			// increment the variable by 1 and repaint the panel.
-			if (panelFrame2.count < data.length) {
-				panelFrame2.count++;
-				panelFrame2.repaint();
+			if (panel.count < data.length) {
+				panel.count++;
+				panel.repaint();
 			}
 			// If the variable "count" reaches the last element in the array, stop the
 			// timer.

@@ -7,11 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-public class LogisticGrowthB {
+public class LogisticGrowthB implements GrowthGraph {
 
 	private AppFrame app;
-	private PanelInFrame3b panelFrame3b;
-	private JLabel labelInFrame3b;
+	private PanelLogisticGrowthB panel;
 
 	// Boolean to know if animation mode of the second graph of the logistic growth
 	// is
@@ -32,25 +31,25 @@ public class LogisticGrowthB {
 	// clicks a button to draw a graph of the logistic growth. This JFrame has a
 	// label
 	// and a graph of two consecutive populations in the logistic growth.
-	public void activateLogisticGrowthB() {
+	public void activate() {
 		JFrame frame3b = new JFrame("Logistic Growth 2");
-		// Class PanelInFrame3b is a subclass of PanelInFrame2.
-		panelFrame3b = new PanelInFrame3b();
-		labelInFrame3b = new JLabel("Here is a graph of 2 consecutive generations.");
-		frame3b.getContentPane().add(BorderLayout.CENTER, panelFrame3b);
+		// Class PanleLogisticGrowthB is a subclass of PanelInFrame2.
+		panel = new PanelLogisticGrowthB();
+		JLabel labelInFrame3b = new JLabel("Here is a graph of 2 consecutive generations.");
+		frame3b.getContentPane().add(BorderLayout.CENTER, panel);
 		frame3b.getContentPane().add(BorderLayout.NORTH, labelInFrame3b);
 
 		frame3b.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame3b.setSize(800, 700);
 		frame3b.setVisible(false);
 
-		frame3bDraw();
+		frameDraw();
 		frame3b.setVisible(true);
 	}
 
 	// This method draws a graph of early population v.s. later population of the
 	// logistic growth using the constants submitted by the user.
-	private void frame3bDraw() {
+	private void frameDraw() {
 		// Initial population
 		int p = app.getField5();
 		// The number of generations including the initial one
@@ -70,8 +69,8 @@ public class LogisticGrowthB {
 		if (app.getField7() < 4) {
 
 			// Pass the array of data points of the logistic growth to the array "sample"
-			// in PanelInFrame3b
-			panelFrame3b.sample = data;
+			// in PanleLogisticGrowthB
+			panel.sample = data;
 
 			/*
 			 * If the animation mode is off, set the variable "count" to be the length of
@@ -80,14 +79,14 @@ public class LogisticGrowthB {
 			 * case, all data points are plotted.
 			 */
 			if (check == false) {
-				panelFrame3b.count = data.length;
-				// Call paintComponent() in Class PanelInFrame3b, which is a subclass of
+				panel.count = data.length;
+				// Call paintComponent() in Class PanleLogisticGrowthB, which is a subclass of
 				// PanelInFrame2.
-				panelFrame3b.repaint();
+				panel.repaint();
 			}
 			// Otherwise, animate the graph.
 			else {
-				frame3bAnimate();
+				frameAnimation();
 			}
 		}
 		// If the reproductive rate in the logistic growth is larger than 4,
@@ -99,8 +98,8 @@ public class LogisticGrowthB {
 	}
 
 	// This method animates the second graph of the logistic growth.
-	public void frame3bAnimate() {
-		panelFrame3b.count = 0;
+	private void frameAnimation() {
+		panel.count = 0;
 		// If the timer does not exist yet, start the timer.
 		if (timer == null) {
 			timer = new Timer(50, new animate3bListener());
@@ -123,9 +122,9 @@ public class LogisticGrowthB {
 			// If the variable "count" is smaller than the length of the array of date
 			// points,
 			// increment the variable by 1 and repaint the panel.
-			if (panelFrame3b.count < data.length) {
-				panelFrame3b.count++;
-				panelFrame3b.repaint();
+			if (panel.count < data.length) {
+				panel.count++;
+				panel.repaint();
 			}
 			// If the variable "count" reaches the last element in the array, stop the
 			// timer.

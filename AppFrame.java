@@ -193,7 +193,7 @@ public class AppFrame {
 	// Action Listener of a button to draw the graph of the exponential growth
 	class button1Listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			eg.activateExponentialGrowth();
+			eg.activate();
 		}
 	}
 
@@ -202,7 +202,7 @@ public class AppFrame {
 	// of the logistic growth
 	class button2Listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			lga.activateLogisticGrowthA();
+			lga.activate();
 		}
 	}
 
@@ -210,7 +210,7 @@ public class AppFrame {
 	// population of the logistic growth
 	class button3Listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			lgb.activateLogisticGrowthB();
+			lgb.activate();
 		}
 	}
 
