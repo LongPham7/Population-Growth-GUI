@@ -1,10 +1,5 @@
 /**
- * Title:                         Graph of the Exponential Growth
- *                                                                 @author Pham.LongThanh
- *                                                                 Date: January 11, 2017
- *     
- *Class Description:
- *    This class draws a graph of the exponential growth based on constants given by a user.
+ * This class draws a graph of the exponential growth based on constants given by a user.
  *This is implemented when repaint() is called. 
  *
  *Algorithm Outline:
@@ -15,11 +10,7 @@
  *bars is drawn.
  */
 import javax.swing.*;
-
 import java.awt.*;
-
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 //This class is a subclass of JPanel, and overrides paintComponent().
 public class PanelInFrame2 extends JPanel
