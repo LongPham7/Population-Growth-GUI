@@ -23,6 +23,7 @@ import java.awt.Graphics2D;
 
 //This class is a subclass of PanleInFrame2, and overrides paintComponent().
 public class PanelLogisticGrowthA extends PanelGrowthGraph {
+
 	@Override
 	public void paintComponent(Graphics g1) {
 		Graphics2D g = (Graphics2D) g1;

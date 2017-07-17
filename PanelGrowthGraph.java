@@ -1,6 +1,7 @@
 import javax.swing.JPanel;
 
 public abstract class PanelGrowthGraph extends JPanel {
+	
 	protected double[] sample;
 
 	// Field variable to store the number to data points to plot on the graph.

@@ -1,4 +1,3 @@
-
 /**
  * This class draws a graph of the exponential growth based on constants given by a user.
  *This is implemented when repaint() is called. 
@@ -10,7 +9,6 @@
  *field variable is set, a graph of the exponential growth together with axis titles and scale
  *bars is drawn.
  */
-import javax.swing.*;
 import java.awt.*;
 
 //This class is a subclass of JPanel, and overrides paintComponent().

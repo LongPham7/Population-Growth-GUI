@@ -19,14 +19,14 @@
  */
 
 public class UnpredictableOutput {
-	private AppFrame gui = new AppFrame();
+	private AppFrame app = new AppFrame();
 	
 	public static void main(String[] args) {
-		UnpredictableOutput app = new UnpredictableOutput();
-		app.activate();
+		UnpredictableOutput gui = new UnpredictableOutput();
+		gui.activate();
 	}
 	
 	public void activate() {
-		gui.activate();
+		app.activate();
 	}
 }
