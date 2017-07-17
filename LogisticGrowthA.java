@@ -77,7 +77,7 @@ public class LogisticGrowthA implements GrowthGraph {
 		// The reproductive rate for logistic growth must be smaller than or
 		// equal to 4.
 		if (app.getField6() < 4) {
-			panel.sample = data;
+			panel.setData(data);
 			if (isAnimate == false) {
 				panel.count = data.length;
 				panel.repaint();

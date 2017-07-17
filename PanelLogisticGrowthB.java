@@ -1,91 +1,80 @@
+import java.awt.*;
 
 /**
- * Title:                         Graph2 of the Logistic Growth
- *                                                                 @author Pham.LongThanh
- *                                                                 Date: January 11, 2017
- *   
- *Class Description:
- *    This class draws a graph of populations of 2 consecutive generations in the logistic 
- *growth based on constants inserted by a user. This is implemented when repaint() is called.
- *
- *Algorithm Outline:
- *    This class adjusts the place of graph automatically. The graph shifts to the right as the 
- *number of digits in vertical scale increases. The field variable that controls the space
- *between the graph and the left edge of the panel is WIDTH_HORIZONTAL. After the value for this
- *field variable is set, a graph of the logistic growth together with axis titles and scale
- *bars is drawn.
+ * This class creates a panel where a second graph for logistic growth is
+ * displayed. Users first invoke the setData method to pass an array of
+ * population values to this class. Subsequently, the repaint method is invoked
+ * to draw a graph.
  */
-
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-//This class is a subclass of PanleInFrame3, and overrides paintComponent().
 public class PanelLogisticGrowthB extends PanelLogisticGrowthA {
+
+	// Default serial version UID
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public void paintComponent(Graphics g1) {
 		Graphics2D g = (Graphics2D) g1;
 
-		// An optimized distance from the left edge of a window to the left edge of the
-		// graph
-		final int WIDTH_HORIZONTAL = 160 + 5 * (Integer.toString(findYInterval()).length());
-		int intervalX = findYInterval();// Because the x-axis is the same as y-axis.
+		// Optimal distance from the left edge of a window to the left edge of a graph
+		final int HORIZONTAL_WIDTH = 160 + 5 * (Integer.toString(findYInterval()).length());
+		int intervalX = findYInterval();
 		int intervalY = findYInterval();
 
-		// Make x- and y-axes.
+		// Draw an x- and a y-axes.
 		g.setColor(Color.black);
-		g.drawLine(WIDTH_HORIZONTAL, 550, WIDTH_HORIZONTAL + 500, 550);
-		g.drawLine(WIDTH_HORIZONTAL, 550, WIDTH_HORIZONTAL, 50);
+		g.drawLine(HORIZONTAL_WIDTH, 550, HORIZONTAL_WIDTH + 500, 550);
+		g.drawLine(HORIZONTAL_WIDTH, 550, HORIZONTAL_WIDTH, 50);
 
-		// Draw scale bars for x-axis.
+		// Draw scale bars for the x-axis.
 		for (int i = 1; i < 11; i++) {
-			g.drawLine(WIDTH_HORIZONTAL + 50 * i, 550, WIDTH_HORIZONTAL + 50 * i, 555);
+			g.drawLine(HORIZONTAL_WIDTH + 50 * i, 550, HORIZONTAL_WIDTH + 50 * i, 555);
 		}
 
-		// Draw scale bars for y-axis.
+		// Draw scale bars for the y-axis.
 		for (int i = 1; i < 11; i++) {
-			g.drawLine(WIDTH_HORIZONTAL - 5, 550 - 50 * i, WIDTH_HORIZONTAL, 550 - 50 * i);
+			g.drawLine(HORIZONTAL_WIDTH - 5, 550 - 50 * i, HORIZONTAL_WIDTH, 550 - 50 * i);
 		}
 
-		// label for x-axis
+		// Label the x-axis.
 		for (int i = 0; i < 11; i++) {
 			String n = Integer.toString(intervalX * i);
-			g.drawString(n, WIDTH_HORIZONTAL - 5 + 50 * i, 575);
+			g.drawString(n, HORIZONTAL_WIDTH - 5 + 50 * i, 575);
 		}
-		// label for y-axis
+		// Label the y-axis.
 		for (int i = 0; i < 11; i++) {
 			String n = Integer.toString(intervalY * i);
 			g.drawString(n, 138, 555 - 50 * i);
 		}
 
-		int memoryx = 0;// Variable to store the x-coordinate of the previous data point
-		int memoryy = 0;// Variable to store the y-coordinate of the previous data point
-		// Plot data points from the array, and connect them by lines.
+		int oldX = 0; // X-coordinate of the preceding data point
+		int oldY = 0; // Y-coordinate of the preceding data point
+		int x = 0;
+		int y = 0;
+
+		// Plot data points.
 		for (int i = 0; i < count - 1; i++) {
 			g.setColor(Color.blue);
-			// Find x-coordinate.
-			int x = WIDTH_HORIZONTAL + (50 * (int) Math.round(sample[i]) / intervalX);
-			// Find y-coordinate.
-			int y = 550 - (int) Math.round(sample[i + 1] * 50 / intervalY);
+			// Calculate the x-coordinate.
+			x = HORIZONTAL_WIDTH + (50 * (int) Math.round(data[i]) / intervalX);
+			// Calculate the y-coordinate.
+			y = 550 - (int) Math.round(data[i + 1] * 50 / intervalY);
 
-			// Plot a point (a circle with radius of 5) on this point.
+			// Plot a point (a circle of radius 5) at this coordinate.
 			g.fillOval(x - 3, y - 3, 5, 5);
-			// Draw a line connecting 2 consecutive data points every time except for the
-			// first one.
+
+			// Draw a line connecting two consecutive data points.
 			if (i > 0) {
 				g.setColor(Color.green);
-				g.drawLine(x, y, memoryx, memoryy);
+				g.drawLine(x, y, oldX, oldY);
 			}
-			memoryx = x;// Store the x-coordinate.
-			memoryy = y;// Store the y-coordinate.
+			oldX = x;
+			oldY = y;
 		}
 
 		// Label axis titles.
 		g.setColor(Color.black);
 		g.setFont(new Font("Serif", Font.ITALIC, 13));
-		g.drawString("Preceding Population", 200 + WIDTH_HORIZONTAL, 600);
+		g.drawString("Preceding Population", 200 + HORIZONTAL_WIDTH, 600);
 		g.drawString("Following Population", 10, 300);
 	}
 }

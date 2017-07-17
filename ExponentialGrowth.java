@@ -82,7 +82,7 @@ public class ExponentialGrowth implements GrowthGraph {
 		}
 
 		if (canDisplay == true) {
-			panel.sample = data;
+			panel.setData(data);
 			if (isAnimate == false) {
 				panel.count = data.length;
 				panel.repaint();

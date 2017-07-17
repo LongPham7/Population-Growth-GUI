@@ -56,7 +56,7 @@ public class LogisticGrowthB implements GrowthGraph {
 		isAnimate = b;
 	}
 
-	// Draws a graph that maps every pair of consecutive populations in
+	// Draws a graph that plots every pair of consecutive populations in
 	// logistic growth.
 	private void frameDraw() {
 		// Initial population
@@ -78,7 +78,7 @@ public class LogisticGrowthB implements GrowthGraph {
 		// The reproductive rate for logistic growth must be smaller than or
 		// equal to 4.
 		if (app.getField6() < 4) {
-			panel.sample = data;
+			panel.setData(data);
 			if (isAnimate == false) {
 				panel.count = data.length;
 				panel.repaint();
