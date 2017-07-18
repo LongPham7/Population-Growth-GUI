@@ -9,58 +9,59 @@ import javax.swing.Timer;
 
 /**
  * This class serves as a view in the MVC architecture, creating GUI components
- * for a graph of logistic growth. The graph itself is, however, displayed on
- * a panel of the PanelLogisticGrowthA class, which is nested in the frame of
- * this class. 
+ * for a second graph of exponential growth. The graph itself is, however,
+ * displayed on a panel of the PanelLogisticGrowthB class, which is nested in
+ * the frame of this class.
  * 
- * Additionally, this class calculates data points for logistic growth using
+ * Additionally, this class calculates data points for exponential growth using
  * parameters specified by users, handing them in to the panel where a graph is
- * displayed. 
+ * displayed.
  */
-public class LogisticGrowthA implements GrowthGraph {
+public class LogisticGrowthB implements GrowthGraph {
 
 	// Array of data points of the logistic growth
 	public double[] data;
 	private AppFrame app;
-	private PanelLogisticGrowthA panel;
+	private PanelLogisticGrowthB panel;
 
 	// Whether the animation mode is on
 	private boolean isAnimate = false;
 
-	// Interval of animation is 50 ms. 
+	// Interval of animation is 50 ms.
 	private final int interval = 50;
-	private Timer timer = new Timer(interval, new animationListener());
+	private Timer timer = new Timer(interval, new animate3bListener());
 
-	public LogisticGrowthA(AppFrame app) {
+	public LogisticGrowthB(AppFrame app) {
 		this.app = app;
 	}
 
-	// Creates GUI components for the first graph of the logistic growth.
+	// Creates GUI components for the second graph of logistic growth.
 	public void activate() {
-		JFrame frame3 = new JFrame("Logistic Growth A");
-		panel = new PanelLogisticGrowthA();
-		JLabel labelInFrame3 = new JLabel("Logistic Growth Graph");
-		frame3.getContentPane().add(BorderLayout.CENTER, panel);
-		frame3.getContentPane().add(BorderLayout.NORTH, labelInFrame3);
+		JFrame frame3b = new JFrame("Logistic Growth B");
+		panel = new PanelLogisticGrowthB();
+		JLabel labelInFrame3b = new JLabel("Pairs of consecutve populations");
+		frame3b.getContentPane().add(BorderLayout.CENTER, panel);
+		frame3b.getContentPane().add(BorderLayout.NORTH, labelInFrame3b);
 
-		frame3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame3.setSize(1350, 700);
-		frame3.setVisible(false);
+		frame3b.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame3b.setSize(800, 700);
+		frame3b.setVisible(false);
 
 		frameDraw();
-		frame3.setVisible(true);
+		frame3b.setVisible(true);
 	}
-
-	// Activates/deactivates animation.
+	
+	// Activates/deactivates animation. 
 	public void setAnimate(boolean b) {
 		isAnimate = b;
 	}
 
-	// Draws a graph of generation v.s. population of the logistic growth.
+	// Draws a graph that plots every pair of consecutive populations in
+	// logistic growth.
 	private void frameDraw() {
 		// Initial population
 		int p = app.getField4();
-		// Number of generations including the initial one
+		// The number of generations including the initial one
 		int k = app.getField5() + 1;
 		// Carrying capacity
 		int cc = app.getField7();
@@ -68,9 +69,9 @@ public class LogisticGrowthA implements GrowthGraph {
 		double r = app.getField6();
 
 		data = new double[k];
-		data[0] = p;
+		data[0] = p;// Initial population
 
-		for (int i = 0; i < k - 1; i++) {
+		for (int i = 0; i != k - 1; i++) {
 			data[i + 1] = r * data[i] * (1 - data[i] / cc);
 		}
 
@@ -85,12 +86,12 @@ public class LogisticGrowthA implements GrowthGraph {
 				frameAnimation();
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Reproductive rate must be lower than 4.", "Error Message",
+			JOptionPane.showMessageDialog(null, "Reproductive rate has to be lower than 4.", "Error Message",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
-	// Animates the first graph of the logistic growth.
+	// Animates the second graph of the logistic growth.
 	private void frameAnimation() {
 		if (!timer.isRunning()) {
 			timer.restart();
@@ -98,7 +99,7 @@ public class LogisticGrowthA implements GrowthGraph {
 	}
 
 	// Action listener for animation
-	class animationListener implements ActionListener {
+	class animate3bListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (panel.count < data.length) {
 				panel.count++;

@@ -11,11 +11,11 @@ import javax.swing.Timer;
  * This class serves as a view in the MVC architecture, creating GUI components
  * for a graph of exponential growth. The graph itself is, however, displayed on
  * a panel of the PanelExponentialGrowth class, which is nested in the frame of
- * this class. 
+ * this class.
  * 
- * Additionally, this class calculates data points for exponential growth using
- * parameters specified by users, handing them in to the panel where a graph is
- * displayed. 
+ * Additionally, this class calculates data value for exponential growth using
+ * the parameters specified by users, handing them in to the panel where a graph
+ * is displayed.
  */
 public class ExponentialGrowth implements GrowthGraph {
 
@@ -27,7 +27,7 @@ public class ExponentialGrowth implements GrowthGraph {
 	// Whether the animation mode is on
 	private boolean isAnimate = false;
 
-	// Interval of animation is 50 ms. 
+	// Interval of animation is 50 ms.
 	private final int interval = 50;
 	private Timer timer = new Timer(interval, new animationListener());
 
@@ -73,7 +73,7 @@ public class ExponentialGrowth implements GrowthGraph {
 
 		data = new double[k];
 		data[0] = p;// Initial population
-		for (int i = 0; i < k - 1; i++) {
+		for (int i = 0; i != k - 1; i++) {
 			data[i + 1] = r * data[i];
 			if (data[i + 1] >= bound) {
 				canDisplay = false;

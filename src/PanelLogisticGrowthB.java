@@ -26,22 +26,22 @@ public class PanelLogisticGrowthB extends PanelLogisticGrowthA {
 		g.drawLine(HORIZONTAL_WIDTH, 550, HORIZONTAL_WIDTH, 50);
 
 		// Draw scale bars for the x-axis.
-		for (int i = 1; i < 11; i++) {
+		for (int i = 1; i != 11; i++) {
 			g.drawLine(HORIZONTAL_WIDTH + 50 * i, 550, HORIZONTAL_WIDTH + 50 * i, 555);
 		}
 
 		// Draw scale bars for the y-axis.
-		for (int i = 1; i < 11; i++) {
+		for (int i = 1; i != 11; i++) {
 			g.drawLine(HORIZONTAL_WIDTH - 5, 550 - 50 * i, HORIZONTAL_WIDTH, 550 - 50 * i);
 		}
 
 		// Label the x-axis.
-		for (int i = 0; i < 11; i++) {
+		for (int i = 0; i != 11; i++) {
 			String n = Integer.toString(intervalX * i);
 			g.drawString(n, HORIZONTAL_WIDTH - 5 + 50 * i, 575);
 		}
 		// Label the y-axis.
-		for (int i = 0; i < 11; i++) {
+		for (int i = 0; i != 11; i++) {
 			String n = Integer.toString(intervalY * i);
 			g.drawString(n, 138, 555 - 50 * i);
 		}
@@ -52,7 +52,7 @@ public class PanelLogisticGrowthB extends PanelLogisticGrowthA {
 		int y = 0;
 
 		// Plot data points.
-		for (int i = 0; i < count - 1; i++) {
+		for (int i = 0; i != count - 1; i++) {
 			g.setColor(Color.blue);
 			// Calculate the x-coordinate.
 			x = HORIZONTAL_WIDTH + (50 * (int) Math.round(data[i]) / intervalX);
