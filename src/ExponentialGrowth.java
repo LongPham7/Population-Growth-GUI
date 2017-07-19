@@ -1,11 +1,8 @@
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 
 /**
  * This class serves as a view in the MVC architecture, creating GUI components
@@ -17,47 +14,30 @@ import javax.swing.Timer;
  * the parameters specified by users, handing them in to the panel where a graph
  * is displayed.
  */
-public class ExponentialGrowth implements GrowthGraph {
-
-	// Array of data points of the exponential growth
-	private double[] data;
-	private AppFrame app;
-	private PanelExponentialGrowth panel;
-
-	// Whether the animation mode is on
-	private boolean isAnimate = false;
-
-	// Interval of animation is 50 ms.
-	private final int interval = 50;
-	private Timer timer = new Timer(interval, new animationListener());
+public class ExponentialGrowth extends GrowthGraph {
 
 	public ExponentialGrowth(AppFrame app) {
-		this.app = app;
+		super(app);
 	}
 
-	// Creates GUI components for the exponential growth graph.
+	// Creates GUI components for the exponential growth.
 	public void activate() {
-		JFrame frame2 = new JFrame("Exponential Growth");
+		JFrame frame = new JFrame("Exponential Growth");
 		panel = new PanelExponentialGrowth();
-		JLabel labelInFrame2 = new JLabel("Exponential Growth Graph");
-		frame2.getContentPane().add(BorderLayout.CENTER, panel);
-		frame2.getContentPane().add(BorderLayout.NORTH, labelInFrame2);
+		JLabel labelInFrame = new JLabel("Exponential Growth Graph");
+		frame.getContentPane().add(BorderLayout.CENTER, panel);
+		frame.getContentPane().add(BorderLayout.NORTH, labelInFrame);
 
-		frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame2.setSize(700, 700);
-		frame2.setVisible(false);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setSize(700, 700);
+		frame.setVisible(false);
 
 		frameDraw();
-		frame2.setVisible(true);
-	}
-
-	// Activates/deactivates animation.
-	public void setAnimate(boolean b) {
-		isAnimate = b;
+		frame.setVisible(true);
 	}
 
 	// Draws a graph of generation v.s. population of the exponential growth.
-	private void frameDraw() {
+	protected void frameDraw() {
 		// Initial population
 		int p = app.getField1();
 		// Number of generations including the initial one
@@ -83,7 +63,7 @@ public class ExponentialGrowth implements GrowthGraph {
 
 		if (canDisplay == true) {
 			panel.setData(data);
-			if (isAnimate == false) {
+			if (getAnimate() == false) {
 				panel.count = data.length;
 				panel.repaint();
 			} else {
@@ -93,25 +73,6 @@ public class ExponentialGrowth implements GrowthGraph {
 			JOptionPane.showMessageDialog(null,
 					"Some populations are larger than " + "the maximum integer allowed in Java.", "Warning Message",
 					JOptionPane.WARNING_MESSAGE);
-		}
-	}
-
-	// Animates the graph of the exponential growth.
-	private void frameAnimation() {
-		if (!timer.isRunning()) {
-			timer.restart();
-		}
-	}
-
-	// Action listener for animation
-	class animationListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			if (panel.count < data.length) {
-				panel.count++;
-				panel.repaint();
-			} else {
-				timer.stop();
-			}
 		}
 	}
 }
