@@ -6,12 +6,12 @@ import javax.swing.Timer;
 /**
  * Abstract class for graphs that display growth functions.
  */
-public abstract class GrowthGraph {
+public abstract class GrowthGraphFrame {
 
 	// Array of data points of the exponential growth
 	protected double[] data;
 	protected AppFrame app;
-	protected PanelGrowthGraph panel;
+	protected GrowthGraphPanel panel;
 
 	// Whether the animation mode is on
 	private boolean isAnimate = false;
@@ -20,7 +20,7 @@ public abstract class GrowthGraph {
 	private final int interval = 50;
 	private Timer timer = new Timer(interval, new animationListener());
 
-	public GrowthGraph(AppFrame app) {
+	public GrowthGraphFrame(AppFrame app) {
 		this.app = app;
 	}
 

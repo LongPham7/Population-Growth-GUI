@@ -13,9 +13,9 @@ import javax.swing.JLabel;
  * parameters specified by users, handing them in to the panel where a graph is
  * displayed.
  */
-public class LogisticGrowthB extends LogisticGrowthA {
+public class LogisticGrowthBFrame extends LogisticGrowthAFrame {
 
-	public LogisticGrowthB(AppFrame app) {
+	public LogisticGrowthBFrame(AppFrame app) {
 		super(app);
 	}
 
@@ -23,7 +23,7 @@ public class LogisticGrowthB extends LogisticGrowthA {
 	// Creates GUI components for the second graph of logistic growth.
 	public void activate() {
 		JFrame frame = new JFrame("Logistic Growth B");
-		panel = new PanelLogisticGrowthB();
+		panel = new LogisticGrowthBPanel();
 		JLabel labelInFrame = new JLabel("Pairs of consecutve populations");
 		frame.getContentPane().add(BorderLayout.CENTER, panel);
 		frame.getContentPane().add(BorderLayout.NORTH, labelInFrame);

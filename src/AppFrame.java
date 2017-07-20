@@ -17,9 +17,9 @@ import javax.swing.*;
  */
 public class AppFrame {
 
-	private ExponentialGrowth eg;
-	private LogisticGrowthA lga;
-	private LogisticGrowthB lgb;
+	private ExponentialGrowthFrame eg;
+	private LogisticGrowthAFrame lga;
+	private LogisticGrowthBFrame lgb;
 
 	JFrame frame;
 
@@ -62,9 +62,9 @@ public class AppFrame {
 
 	// Instantiates GUI components and sets them visible. 
 	public void activate() {
-		eg = new ExponentialGrowth(this);
-		lga = new LogisticGrowthA(this);
-		lgb = new LogisticGrowthB(this);
+		eg = new ExponentialGrowthFrame(this);
+		lga = new LogisticGrowthAFrame(this);
+		lgb = new LogisticGrowthBFrame(this);
 
 		frame = new JFrame("Unpredictable Ouput");
 		panel1 = new JPanel();

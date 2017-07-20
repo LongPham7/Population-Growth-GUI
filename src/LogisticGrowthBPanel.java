@@ -6,7 +6,7 @@ import java.awt.*;
  * population values to this class. Subsequently, the repaint method is invoked
  * to draw a graph.
  */
-public class PanelLogisticGrowthB extends PanelLogisticGrowthA {
+public class LogisticGrowthBPanel extends LogisticGrowthAPanel {
 
 	// Default serial version UID
 	private static final long serialVersionUID = 1L;

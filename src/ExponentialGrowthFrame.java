@@ -14,16 +14,16 @@ import javax.swing.JOptionPane;
  * the parameters specified by users, handing them in to the panel where a graph
  * is displayed.
  */
-public class ExponentialGrowth extends GrowthGraph {
+public class ExponentialGrowthFrame extends GrowthGraphFrame {
 
-	public ExponentialGrowth(AppFrame app) {
+	public ExponentialGrowthFrame(AppFrame app) {
 		super(app);
 	}
 
 	// Creates GUI components for the exponential growth.
 	public void activate() {
 		JFrame frame = new JFrame("Exponential Growth");
-		panel = new PanelExponentialGrowth();
+		panel = new ExponentialGrowthPanel();
 		JLabel labelInFrame = new JLabel("Exponential Growth Graph");
 		frame.getContentPane().add(BorderLayout.CENTER, panel);
 		frame.getContentPane().add(BorderLayout.NORTH, labelInFrame);

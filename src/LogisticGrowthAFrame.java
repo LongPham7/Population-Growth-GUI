@@ -14,16 +14,16 @@ import javax.swing.JOptionPane;
  * parameters specified by users, handing them in to the panel where a graph is
  * displayed.
  */
-public class LogisticGrowthA extends GrowthGraph {
+public class LogisticGrowthAFrame extends GrowthGraphFrame {
 
-	public LogisticGrowthA(AppFrame app) {
+	public LogisticGrowthAFrame(AppFrame app) {
 		super(app);
 	}
 
 	// Creates GUI components for the first graph of the logistic growth.
 	public void activate() {
 		JFrame frame = new JFrame("Logistic Growth A");
-		panel = new PanelLogisticGrowthA();
+		panel = new LogisticGrowthAPanel();
 		JLabel labelInFrame = new JLabel("Logistic Growth Graph");
 		frame.getContentPane().add(BorderLayout.CENTER, panel);
 		frame.getContentPane().add(BorderLayout.NORTH, labelInFrame);

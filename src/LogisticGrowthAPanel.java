@@ -5,7 +5,7 @@ import java.awt.*;
  * Users first invoke the setData method to pass an array of population values
  * to this class. Subsequently, the repaint method is invoked to draw a graph.
  */
-public class PanelLogisticGrowthA extends PanelGrowthGraph {
+public class LogisticGrowthAPanel extends GrowthGraphPanel {
 
 	// default serial version UID
 	private static final long serialVersionUID = 1L;

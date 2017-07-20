@@ -4,7 +4,7 @@ import javax.swing.JPanel;
  * This abstract class provides a template for concrete classes that create panels
  * where graphs are displayed. 
  * */
-public abstract class PanelGrowthGraph extends JPanel {
+public abstract class GrowthGraphPanel extends JPanel {
 
 	// Default serial version UID
 	private static final long serialVersionUID = 1L;
